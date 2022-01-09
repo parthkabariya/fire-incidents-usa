@@ -1,0 +1,44 @@
+{
+  "name": "fire-incidents-usa",
+  "version": "1.0.0",
+  "description": "Fire Incidents Layer for USA using Reactjs and Mapbox",
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Parth Kabariya",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.5.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.28.0",
+    "mapbox-gl": "^2.6.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parthkabariya/fire-incidents-usa.git"
+  },
+  "keywords": [
+    "fire-incidents-usa",
+    "fire incidents",
+    "mapbox",
+    "reactjs",
+    "fire alert"
+  ],
+  "bugs": {
+    "url": "https://github.com/parthkabariya/fire-incidents-usa/issues"
+  },
+  "homepage": "https://github.com/parthkabariya/fire-incidents-usa#readme"
+}
