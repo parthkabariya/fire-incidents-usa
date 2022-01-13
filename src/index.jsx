@@ -40,6 +40,8 @@ const FireIncidents = forwardRef((props, ref) => {
       if (!map.hasImage("fire-image")) {
         map.addImage("fire-image", image);
         loadFireLocations(map);
+      } else {
+        loadFireLocations(map);
       }
     });
   };

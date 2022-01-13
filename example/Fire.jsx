@@ -1,14 +1,17 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 
 import mapboxgl from '!mapbox-gl';
 
 import FireIncidents from 'fire-incidents-usa';
 import FireImage from './icons/fire.png';
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoicGFydGhicmFpbnZpcmUiLCJhIjoiY2txOTVjdnQ5MDNvbDJ3cXR6NTZhNjJvcCJ9.Si_1skxaL0-C-uPnxpiUDQ';
+mapboxgl.accessToken = 'Mapbox Token';
 
-export default function App() {
+/**
+ *
+ * @return {Fire}
+ */
+export default function Fire() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-100.62);
@@ -53,7 +56,7 @@ export default function App() {
           options={{
             opacity: 0.9,
             fireImage: FireImage,
-            fireImageSize: 0.4
+            fireImageSize: 0.4,
           }}
           getLoader={(isLoader) => setLoader(isLoader)}
 

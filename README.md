@@ -1,20 +1,20 @@
-# Weather Radar for the USA
-This ReactJs package helps you to show weather radar on a mapbox map. This package fetches data using free APIs of NOAA for the USA only. The package provides nice animation for weather radar data. You can turn on and off the animation as well as the Layer of weather radar.
+# Fire Incidents for the USA
+This ReactJs package helps you to show fire incidents on a Mapbox map. This package fetches data using free APIs of ArcGIS for the USA only. You can turn on and off the fire layer.
 
 ## Installation
-You can install node-shortenurl and its dependencies with npm: `npm install fire-incidents-usa`
+You can install fire-incidents-usa and its dependencies with npm: `npm install fire-incidents-usa`
 
 ## Usage
 
 #### Import
-`import Weather from 'fire-incidents-usa';`
+`import FireIncidents from 'fire-incidents-usa';`
 
 #### Turn on Fire Layer
 In component use ref to call FireIncidents methods.
 ```
 const fireRef = useRef(null);
 
-<Weather 
+<FireIncidents 
     ref={fireRef}
     options= {{
         opacity: 0.8,
@@ -50,3 +50,5 @@ options= {{
     fireImageSize: 0.4 //Size of the Image
 }}
 ```
+#### Full example is provided into example directory
+![Example of fire incidents](example/example.gif)
