@@ -42,6 +42,13 @@ getLoader={(isLoader) => {
 }}
 ```
 
+#### Get the fire incident information and show the popup
+Pass the getLoader prop to the component.
+```
+getFireDetails={(details) => showPopup(details)}
+
+```
+
 ### Some options that you can pass to the component
 ```
 options= {{
@@ -52,3 +59,6 @@ options= {{
 ```
 #### Full example is provided into example directory
 ![Example of fire incidents](example/example.gif)
+
+#### Popup Box
+![Example of fire incidents Popup](example/popup.png)

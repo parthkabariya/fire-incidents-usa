@@ -1,11 +1,13 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState} from "react";
 
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from "!mapbox-gl";
 
-import FireIncidents from 'fire-incidents-usa';
-import FireImage from './icons/fire.png';
+import FireIncidents from "fire-incidents-usa";
+import FireImage from "./icons/fire.png";
+import PopupBox from './PopupBox.jsx';
+import {renderToStaticMarkup} from 'react-dom/server';
 
-mapboxgl.accessToken = 'Mapbox Token';
+mapboxgl.accessToken = "Mapbox Token";
 
 /**
  *
@@ -25,20 +27,44 @@ export default function Fire() {
     if (map.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       zoom: zoom,
     });
   }, []);
 
   useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
-    map.current.on('move', () => {
+    if (!map.current) return;
+    map.current.on("move", () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
   }, []);
+
+  const showPopup = (details) => {
+    let coordinates = null;
+    if (details.features[0].geometry.type == "Point") {
+      coordinates = details.features[0].geometry.coordinates.slice();
+    } else if (details.features[0].geometry.type == "MultiPolygon") {
+      coordinates = details.features[0].geometry.coordinates[0][0][0].slice();
+    } else {
+      coordinates = details.features[0].geometry.coordinates[0][0].slice();
+    }
+    const description = renderToStaticMarkup(
+        <PopupBox
+          items={details.features[0].properties}
+          layerType={details.features[0].geometry.type}
+        />,
+    );
+    while (Math.abs(details.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += details.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(description)
+        .addTo(map.current);
+  };
 
   return (
     <div>
@@ -59,7 +85,7 @@ export default function Fire() {
             fireImageSize: 0.4,
           }}
           getLoader={(isLoader) => setLoader(isLoader)}
-
+          getFireDetails={(details) => showPopup(details)}
         ></FireIncidents>
         <div className="control-bar">
           <div className="controls">
@@ -69,7 +95,7 @@ export default function Fire() {
                 setOnOffControl(!onOffControl);
               }}
             >
-              {onOffControl ? 'Turn On' : 'Turn Off'}
+              {onOffControl ? "Turn On" : "Turn Off"}
             </div>
           </div>
         </div>
