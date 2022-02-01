@@ -1,6 +1,6 @@
 {
   "name": "fire-incidents-usa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fire Incidents Layer for USA using Reactjs and Mapbox",
   "dependencies": {
     "react": "^17.0.2"
